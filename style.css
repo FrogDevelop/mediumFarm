@@ -1,0 +1,1354 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Great+Vibes&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Loading Screen ---------- */
+.loading-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #111; /* тёмный фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+  }
+  
+  .loading-screen.loaded {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .loader-content {
+    text-align: center;
+  }
+  
+  .loader-bud {
+    width: 80px;
+    animation: pulseBud 1s ease-in-out infinite alternate;
+  }
+  
+  .loader-bar {
+    width: 200px;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px auto 0;
+  }
+  
+  .loader-fill {
+    width: 0;
+    height: 100%;
+    background: #4caf50;
+    animation: fillBar 5s linear forwards;
+  }
+  
+  /* Анимация для «шишки» */
+  @keyframes pulseBud {
+    from { transform: scale(1); }
+    to   { transform: scale(1.1); }
+  }
+  
+  /* Анимация заливки прогресс-бара */
+  @keyframes fillBar {
+    to { width: 100%; }
+  }
+  
+header{
+    position: absolute;
+    top: 50px;
+    left: 52%;
+    transform: translate(-50%);
+    color: white;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.stats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+.stats img{
+    position: relative;
+}
+
+html, body {
+    height: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    touch-action: none !important;
+    font-family: "Comfortaa", sans-serif;
+}
+
+body {
+    background-color: black;
+    background-image: url('back.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    font-family: "Comfortaa", sans-serif;
+    position: fixed !important;
+    overscroll-behavior: none !important;
+}
+
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+    user-zoom: fixed;
+  }
+
+footer {
+    position: fixed; /* Изменено с relative на fixed */
+    bottom: 0; /* Закрепляем в самом низу */
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.222));
+    z-index: 10;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 13px;
+    height: 100%;
+    bottom: 10px;
+}
+
+.menu_button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.menu_button:hover {
+    transform: scale(1.1);
+}
+
+.btn-cont{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.farm_plant {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    z-index: 5;
+}
+
+.plant {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
+}
+
+.plant img {
+    height: 60vh;
+    max-height: 800px;
+    width: auto;
+}
+
+
+@keyframes glow {
+    from {
+        background: radial-gradient(ellipse at center, rgba(255, 255, 180, 0.25) 0%, rgba(0, 0, 0, 0) 80%);
+    }
+    to {
+        background: radial-gradient(ellipse at center, rgba(255, 255, 180, 0.5) 0%, rgba(0, 0, 0, 0) 90%);
+    }
+}
+
+.plant img {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.plant img {
+    filter: drop-shadow(0px 20px 20px rgba(0, 0, 0, 0.5));
+}
+
+footer {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.buds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.bud {
+    position: absolute;
+    width: 40px;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.bud.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bud.collecting {
+    animation: budCollect 1s ease forwards;
+}
+
+@keyframes budCollect {
+    0% {
+        transform: scale(1) translateY(0); 
+    }
+    30% {
+        transform: scale(1.1) translateY(-20px); 
+    }
+    60% {
+        transform: scale(1) translateY(-10px); 
+    }
+    100% {
+        transform: scale(0.5) translateY(200px); 
+        opacity: 0; 
+    }
+}
+
+.bud1 { top: 31%; left: 45%; }
+.bud2 { top: 47%; left: 45%; }
+.bud3 { top: 57%; left: 34%; }
+.bud4 { top: 57%; left: 54%; }
+.bud5 { top: 63%; left: 44%; }
+
+.leaf {
+    width: 12px; 
+    height: 12px;
+    background-color: #029a0a;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(var(--x), var(--y));
+    opacity: 0;
+    animation: leafFall 0.5s forwards;
+}
+
+@keyframes leafFall {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.3);
+    }
+}
+
+#inventory-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 101%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); 
+    backdrop-filter: blur(10px); 
+    z-index: 10000; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px; 
+    visibility: hidden; 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#inventory-modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.inventory-content {
+    width: 80%;
+    max-width: 100%;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-inventory {
+    position: relative;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+    width: 120%;
+    text-align: right;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.close-inventory:hover {
+    transform: scale(1.1);
+}
+
+.inventory-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
+    overflow-y: auto;
+    max-height: 70vh; 
+    margin-top: 10px;
+}
+
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s;
+    width: 70px;
+    height: 70px; 
+    margin: 5px; 
+    display: inline-block;
+    text-align: center; 
+    vertical-align: top; 
+    position: relative;
+}
+
+.inventory-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.inventory-item:hover {
+    transform: scale(1.1);
+}
+
+.item-count {
+    margin-top: 5px;
+    color: white;
+    font-size: 14px;
+}
+/* ________________________________________________________ SHOP_____________________________________________________ */
+
+#shop-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.215);
+    backdrop-filter: blur(20px);
+    z-index: 10000;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    color: white;
+}
+
+#shop-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Контент (узкий центр + отступы) */
+.shop-content {
+    height: 100vh;
+    width: 100%;
+    padding-top: 100px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.533);
+    min-height: 90vh;
+    box-sizing: border-box;
+}
+
+/* Шапка магазина */
+.shop-header {
+    position: sticky;
+    top: 0;
+    background: rgba(20, 20, 30, 0.9);
+    padding: 15px 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.shop-title {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Кнопка закрытия (крупная) */
+.close-shop-button {
+    position: absolute;
+    right: 0px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Вертикальный список товаров */
+.shop-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px 0;
+    /* padding-bottom: 100px; */
+    height: 80vh;
+    box-sizing: border-box;
+    overflow-y: auto; /* Добавляем скроллбар при необходимости */
+    max-height: 100vh; /* Ограничиваем высоту */
+}
+
+/* Карточка товара (на всю ширину) */
+.shop-item {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    background: rgba(43, 43, 43, 0.7);
+    width: 96%;
+    border-radius: 12px;
+    padding: 18px;
+    align-items: center;
+    border: 1px solid rgba(76, 175, 80, 0.1);
+    transition: transform 0.2s;
+}
+/* Расположение элементов в строку */
+.shop-item img {
+    width: auto;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.item-info {
+    flex-grow: 1;
+    min-width: 0; /* Фикс для переноса текста */
+}
+
+.item-name {
+    color: white;
+    font-size: 25px;
+    margin-top: 20px;
+    font-weight: 900;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-description{
+    margin-top: 20px;
+    font-size: 13px;
+}
+.item-price {
+    color: #4CAF50;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+/* Кнопка покупки (справа) */
+.shop-item button {
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.shop-item button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.inventory-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.buy-button{
+    background: linear-gradient(to right, #4CAF50, #388E3C);
+    position: relative;
+    margin-left: 0;
+    width: 80px;
+}
+
+.buy-conteiner{
+    display: flex;
+    margin-top: 20px;
+    justify-content:left;
+    align-items: center;
+}
+
+.quantity-controls {
+    position: relative;
+    left: 10px;
+    display: flex;
+    gap: 0; /* Убираем промежутки между элементами */
+    margin-right: 20px; /* Убираем внешние отступы */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.quantity-button {
+    position: relative;
+    height: 27px;
+    width: 27px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-button.plus,
+.quantity-button.minus{
+    background-color: rgb(76, 76, 76);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+}
+
+.quantity {
+    text-align: center;
+    width: 27px;
+    padding: 0;
+    line-height: 27px; /* Центрирование текста по вертикали */
+}
+/* ________________________________________________________ SHOP_____________________________________________________ */
+.modal {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: white;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+    z-index: 199900;
+    padding: 20px;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.modal.open {
+    display: block;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-content {
+    position: relative;
+}
+
+.action-menu {
+    position: fixed;
+    background: rgba(39, 39, 39, 0.737);
+    border-radius: 8px;
+    padding: 6px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.15); 
+    z-index: 100000;
+    min-width: 140px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.action-menu:not(.hidden) {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.action-button {
+    background: transparent;
+    color: #e0e0e0;
+    border: none;
+    padding: 5px 8px;
+    margin: 0 6px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Cal Sans', sans-serif;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    display: block;
+    width: calc(100% - 12px);
+}
+
+.action-button:hover {
+    background: rgba(76, 175, 80, 0.1);
+    color: #fff;
+}
+
+.action-button:active {
+    background: rgba(76, 175, 80, 0.2);
+}
+
+.action-separator {
+    height: 1px;
+    background: rgba(76, 175, 80, 0.1);
+    margin: 6px 0;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+    outline: none; 
+    box-shadow: none;
+}
+
+button:focus-visible {
+    outline: none; 
+}
+
+.menu_button {
+    background-color: transparent;
+    padding: 5px;
+}
+
+.menu_button:active {
+    background-color: transparent;
+}
+
+.menu_button:focus {
+    outline: none;
+    box-shadow: none;
+}
+a:focus {
+    outline: none;
+}
+
+/*--------------------------------------------------------- Darknet-модалка----------------------------------------------------*/
+/* Стили для телефона */
+.phone-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.262);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.phone-modal.open {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.phone-modal.closing {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.phone-frame {
+    background: #222;
+    width:90%;
+    max-width: 380px;
+    height: 90%;
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    outline: solid 3px #c8c8c8;
+    border: solid 8px #000000;
+}
+
+.phone-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100px;
+    height:30px;
+    top: 7%;
+    left: 50%;
+    text-align: center;
+    background: #000000;
+    border-radius: 20px;
+    transform: translate(-50%);
+    z-index: 9999;
+}
+.phone-screen {
+    background-color: #222;
+    background: url('phone-back.jpg');
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    padding-top: 50px; /* Отступ для шапки */
+}
+
+.home-screen, .app-screen {
+    height: calc(100% - 50px); /* Компенсируем отступ */
+    overflow-y: hidden;
+}
+.app-header {
+    display: none; /* Скрываем дублирующий header в приложении */
+}
+
+.phone-apps {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.phone-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-color: rgb(65, 65, 65);
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+}
+
+.phone-app img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.phone-app span {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.phone-footer {
+    left: 50%;
+    transform: translate(-50%);
+    position: fixed;
+    background: #ffffff00;
+    width: 100%;
+    height: min-content;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    bottom: 6.5%;
+}
+
+.close-phone-button {
+    position: relative;
+    cursor: pointer;
+    width: 150px;
+    height: 5px;
+    background-color: #ffffff;
+    border-radius: 100px;
+}
+
+/* Стили для контента приложений */
+.phone-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: none;
+}
+
+.app-content {
+    height: 100%;
+    overflow-y: auto;
+    padding: 15px;
+    color: white;
+}
+
+.app-content:not(.hidden) {
+    display: block;
+}
+
+/* Стили для мессенджера */
+.messenger-header {
+    position: sticky;
+    top: 0;
+    background: #000;
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+.chat-list {
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #333;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chat-item img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 20px;
+}
+
+.chat-item:hover {
+    background: #444;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.message {
+    background: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.message.user {
+    background: #4CAF50;
+    margin-left: auto;
+}
+
+.reply-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    background: #222;
+    padding-bottom: 50px;
+}
+
+.reply-buttons button {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-messenger {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* Основные стили телефона (уже есть) */
+
+.phone-screen {
+    height: 100%;
+    position: relative;
+}
+
+.home-screen, .app-screen {
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.app-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+}
+
+.app-header {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.app-title {
+    color: white;
+    font-size: 18px;
+}
+
+.app-content {
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.phone-modal.closing .phone-frame {
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+/*--------------------------------------------------------- Darknet-модалка----------------------------------------------------*/
+.lamp-conteiner{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+.lamp img{
+    height: auto;
+    width: 250px;
+}
+.buff-status-container {
+    position: fixed;
+    top: 25%;
+    gap: 15px;
+    z-index: 9999;
+    background-color: #2c2c2ceb;
+    border-radius: 10px;
+}
+
+.buff-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    padding: 6px 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+    animation: fadeIn 0.3s ease-in-out;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.buff-item img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#notification-container {
+    position: fixed;
+    top: 10%;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.notification {
+    padding: 12px 20px;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.3s ease;
+    max-width: 250px;
+    word-wrap: break-word;
+    border-left: 4px solid #4CAF50;
+}
+
+.notification.error {
+    background: rgba(255, 68, 68, 0.9);
+    border-left-color: #ff4444;
+}
+
+@keyframes slideInFromLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOutToLeft {
+    from { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to { 
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+}
+#mixer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90900;
+}
+
+.mixer-container {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.mixer-slots {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.slot {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #555;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slot img{
+    height: 50px;
+    width: auto;
+}
+
+.mixer-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.mixer-item {
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.mixer-item img{
+    height: 50px;
+    width: auto;
+}
+.mixer-item:hover {
+    background: #444;
+}
+
+#mix-button, #close-mixer {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#mix-button {
+    background: #4CAF50;
+    color: white;
+}
+
+#close-mixer {
+    background: #f44336;
+    color: white;
+}
+
+/* ________________________________________________APP DARKNET______________________________________ */
+
+.darknet-app {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.darknet-header {
+    text-align: center;
+    border-bottom: 2px solid #4CAF50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.darknet-header h2 {
+    color: #4CAF50;
+    font-size: 36px;
+}
+
+.reputation {
+    font-size: 18px;
+    margin-top: 5px;
+    color: #999;
+}
+
+.tor-status {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #4CAF50;
+}
+
+.darknet-rep {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.darknet-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.darknet-button {
+    background-color: #333;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+.darknet-button:hover {
+    background-color: #4CAF50;
+    color: #111;
+}
+
+#darknet-market {
+    margin-top: 20px;
+}
+
+.market-item {
+    background-color: #333;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    transition: all 0.3s ease;
+}
+
+.item-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.item-price {
+    font-size: 18px;
+    color: #999;
+}
+
+.buy-item {
+    background-color: #222;
+    color: #fff;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.buy-item:hover {
+    background-color: #4CAF50;
+    color: #111;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quantity-selector button {
+    padding: 5px 12px;
+    font-size: 18px;
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+.quantity-selector input {
+    width: 40px;
+    text-align: center;
+    background: #111;
+    color: white;
+    border: 1px solid #444;
+    font-size: 16px;
+}
+
+/* ________________________________________________APP DARKNET______________________________________ */
+
+/*___________________________________________TON Wallet Modal Styles________________________________ */
+
+#wallet-info {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: "Cal Sans", sans-serif;
+}
+
+#wallet-info:hover {
+    background: rgba(76, 175, 80, 0.7);
+}
